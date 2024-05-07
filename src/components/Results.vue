@@ -1,6 +1,6 @@
 <template>
     <h3>Best scores:</h3>
-    <div v-for="(score, i) in scores">
+    <div v-for="(score, i) in scores" :key="i">
        {{ ++i }}) {{ score }} seconds
     </div>
 </template>
