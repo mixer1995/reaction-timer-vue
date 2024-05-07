@@ -1,26 +1,44 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Max's reaction trainer</h1>
+    <button @click="start" :disabled="isPlaying">Begin</button>
+    <Block v-if="isPlaying" :delay="delay" @end="endGame" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Block from './components/Block.vue';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {
+        Block
+    },
+    data() {
+        return {
+            isPlaying: false,
+            delay: null,
+            score: null
+        }
+    },
+    methods: {
+        start() {
+            this.delay = 2000 + Math.random() * 5000;
+            this.isPlaying = true;
+        },
+        endGame(reactTime) {
+            console.log(reactTime);
+            this.isPlaying = false;
+        }
+    }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #444;
+    margin-top: 60px;
 }
 </style>
